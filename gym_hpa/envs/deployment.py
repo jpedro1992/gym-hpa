@@ -296,7 +296,7 @@ class DeploymentStatus:  # Deployment Status (Workload)
             # -------------- MEM ----------------
             results_mem = self.fetch_prom(query_mem)
             if results_mem:
-                mem = int(float(results_mem[0]['value'][1]) / 100000)  # saved as Mi
+                mem = int(float(results_mem[0]['value'][1]) / 1000000)  # saved as Mi
                 self.mem_usage += mem
 
             # -------------- Received Traffic  ----------------
