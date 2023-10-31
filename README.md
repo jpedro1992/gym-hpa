@@ -23,6 +23,8 @@ To run the code, go to the folder `policies/run` and run:
 python run.py
 ```
 
+Additional arguments can be passed while running run.py. Please check here [run.py](policies/run/run.py). 
+
 ## Team
 
 * [Jose Santos](https://scholar.google.com/citations?hl=en&user=57EIYWcAAAAJ)
