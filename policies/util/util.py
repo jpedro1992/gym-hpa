@@ -5,20 +5,20 @@ from matplotlib import pyplot as plt
 def test_model(model, env, n_episodes, n_steps, smoothing_window, fig_name):
     episode_rewards = []
     reward_sum = 0
-    obs = env.reset()
+    obs, info = env.reset()
 
     print("------------Testing -----------------")
 
     for e in range(n_episodes):
         for _ in range(n_steps):
             action, _ = model.predict(obs)
-            obs, reward, done, _ = env.step(action)
+            obs, reward, terminated, truncated, _ = env.step(action)
             reward_sum += reward
-            if done:
+            if terminated:
                 episode_rewards.append(reward_sum)
                 print("Episode {} | Total reward: {} |".format(e, str(reward_sum)))
                 reward_sum = 0
-                obs = env.reset()
+                obs, info = env.reset()
                 break
 
     env.close()

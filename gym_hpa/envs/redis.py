@@ -4,11 +4,11 @@ import logging
 import time
 from statistics import mean
 
-import gym
+import gymnasium as gym
 import numpy as np
 import pandas as pd
-from gym import spaces
-from gym.utils import seeding
+from gymnasium import spaces
+from gymnasium.utils import seeding
 from datetime import datetime
 
 from gym_hpa.envs.deployment import get_max_cpu, get_max_mem, get_max_traffic, get_redis_deployment_list
@@ -199,13 +199,13 @@ class Redis(gym.Env):
                         self.total_reward, self.execution_time)
 
         # return ob, reward, self.episode_over, self.info
-        return np.array(ob), reward, self.episode_over, self.info
+        return np.array(ob), reward, self.episode_over, not self.episode_over, self.info
 
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def reset(self):
+    def reset(self, *, seed=None, options = None):
         """
         Reset the state of the environment and returns an initial observation.
         Returns
@@ -224,7 +224,7 @@ class Redis(gym.Env):
         # Deployment Data
         self.deploymentList = get_redis_deployment_list(self.k8s, self.min_pods, self.max_pods)
 
-        return np.array(self.get_state())
+        return np.array(self.get_state()), self.info
 
     def render(self, mode='human', close=False):
         # Render the environment to the screen
