@@ -37,8 +37,6 @@ For questions or support, please use GitHub's issue system.
 
 Copyright (c) 2020 Ghent University and IMEC vzw.
 
-Address: IDLab, Ghent University, iGent Toren, Technologiepark-Zwijnaarde 126 B-9052 Gent, Belgium 
-
-Email: info@imec.be.
+Address: IDLab, Ghent University, iGent Toren, Technologiepark-Zwijnaarde 126 B-9052 Gent, Belgium
 
 
