@@ -18,7 +18,7 @@ logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S
 parser = argparse.ArgumentParser(description='Run ILP!')
 parser.add_argument('--alg', default='ppo', help='The algorithm: ["ppo", "recurrent_ppo", "a2c"]')
 parser.add_argument('--k8s', default=False, action="store_true", help='K8s mode')
-parser.add_argument('--use_case', default='redis', help='Apps: ["redis", "onlineboutique"]')
+parser.add_argument('--use_case', default='redis', help='Apps: ["redis", "online_boutique"]')
 parser.add_argument('--goal', default='cost', help='Reward Goal: ["cost", "latency"]')
 
 parser.add_argument('--training', default=False, action="store_true", help='Training mode')
@@ -66,7 +66,8 @@ def get_env(use_case, k8s, goal):
     elif use_case == 'online_boutique':
         env = OnlineBoutique(k8s=k8s, goal_reward=goal)
     else:
-        logging.info('Invalid use_case!')
+        logging.error('Invalid use_case!')
+        raise ValueError('Invalid use_case!')
 
     return env
 
